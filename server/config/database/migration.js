@@ -15,7 +15,9 @@ db.serialize(() => {
 
   db.run(`CREATE TABLE IF NOT EXISTS stations (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT UNIQUE NOT NULL
+    name TEXT UNIQUE NOT NULL,
+    x INTEGER NOT NULL,
+    y INTEGER NOT NULL
   )`);
 
   db.run(`CREATE TABLE IF NOT EXISTS segments (
