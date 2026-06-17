@@ -1,10 +1,10 @@
 import session from "express-session";
 import "dotenv/config";
 
-const authSession = session({
+const sessionConfig = session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
 });
 
-export default authSession;
+export default sessionConfig;

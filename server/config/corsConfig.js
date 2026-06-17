@@ -1,6 +1,6 @@
 import cors from "cors";
 
-const corsMiddleware = cors({
+const corsConfig = cors({
     origin: (origin, callback) => {
         const isLocalhost = /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
 
@@ -13,4 +13,4 @@ const corsMiddleware = cors({
     credentials: true,
 });
 
-export default corsMiddleware;
+export default corsConfig;
