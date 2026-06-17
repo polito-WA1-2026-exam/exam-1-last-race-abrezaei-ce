@@ -40,7 +40,8 @@ db.serialize(() => {
     origin INTEGER NOT NULL,
     destination INTEGER NOT NULL,
     score INTEGER NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    history TEXT DEFAULT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (origin) REFERENCES stations(id),
     FOREIGN KEY (destination) REFERENCES stations(id)
   )`);

@@ -5,7 +5,7 @@ const users = [
     { id: 1, username: 'AbRezaei', hashed_password: 'password' },
     { id: 2, username: 'Player 01', hashed_password: 'simple_password' },
     { id: 3, username: 'Player 02', hashed_password: 'strong_password' },
-]
+];
 
 users.forEach((user) => {
     user.salt = crypto.randomBytes(16).toString('hex');
@@ -38,6 +38,17 @@ const stations = [
     { id: 16, name: 'Dante' },
 ];
 
+const events = [
+    { id: 1, description: 'No valid ticket', effect: -4 },
+    { id: 2, description: 'Wrong platform', effect: -3 },
+    { id: 3, description: 'Train delayed', effect: -2 },
+    { id: 4, description: 'Dropped a coin', effect: -1 },
+    { id: 5, description: 'Found a coin', effect: 1 },
+    { id: 6, description: 'Perfect timing', effect: 2 },
+    { id: 7, description: 'Kind passenger', effect: 3 },
+    { id: 8, description: 'Won metro lottery', effect: 4 },
+];
+
 const segments = [
     { id: 1, origin: 1, destination: 2, line_id: 1 },
     { id: 2, origin: 2, destination: 3, line_id: 1 },
@@ -56,20 +67,36 @@ const segments = [
     { id: 15, origin: 14, destination: 15, line_id: 4 }
 ];
 
-const events = [
-    { id: 1, description: 'Caught without a valid ticket by the inspector', effect: -4 },
-    { id: 2, description: 'Boarded the wrong train direction', effect: -3 },
-    { id: 3, description: 'Train delayed due to technical issues', effect: -2 },
-    { id: 4, description: 'Dropped a coin on the tracks', effect: -1 },
-    { id: 5, description: 'Found a loose coin on the platform', effect: +1 },
-    { id: 6, description: 'Arrived exactly as the doors opened', effect: +2 },
-    { id: 7, description: 'Helped a tourist and received a reward', effect: +3 },
-    { id: 8, description: 'Won the daily metro passenger lottery', effect: +4 },
-];
-
 const games = [
-    { id: 1, user_id: 1, origin: 1, destination: 16, score: 25 },
-    { id: 2, user_id: 2, origin: 6, destination: 15, score: 18 }
+    {
+        id: 1,
+        user_id: 1,
+        origin: 1,
+        destination: 16,
+        score: 25,
+        history: [
+            { step: 1, segment_id: 1, event_id: 5, effect: 1 },
+            { step: 2, segment_id: 2, event_id: 6, effect: 2 },
+            { step: 3, segment_id: 3, event_id: 8, effect: 4 },
+            { step: 4, segment_id: 4, event_id: 4, effect: -1 },
+            { step: 5, segment_id: 5, event_id: 7, effect: 3 },
+            { step: 6, segment_id: 6, event_id: 3, effect: -2 }
+        ]
+    },
+    {
+        id: 2,
+        user_id: 2,
+        origin: 6,
+        destination: 15,
+        score: 18,
+        history: [
+            { step: 1, segment_id: 10, event_id: 8, effect: 4 },
+            { step: 2, segment_id: 11, event_id: 3, effect: -2 },
+            { step: 3, segment_id: 12, event_id: 5, effect: 1 },
+            { step: 4, segment_id: 13, event_id: 6, effect: 2 },
+            { step: 5, segment_id: 14, event_id: 2, effect: -3 }
+        ]
+    }
 ];
 
 db.serialize(() => {
@@ -104,8 +131,8 @@ db.serialize(() => {
 
     games.forEach((game) => {
         db.run(
-            "INSERT INTO games (id, user_id, origin, destination, score) VALUES (?, ?, ?, ?, ?)",
-            [game.id, game.user_id, game.origin, game.destination, game.score]
+            "INSERT INTO games (id, user_id, origin, destination, score, history) VALUES (?, ?, ?, ?, ?, ?)",
+            [game.id, game.user_id, game.origin, game.destination, game.score, JSON.stringify(game.history)]
         );
     });
 });
