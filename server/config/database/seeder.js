@@ -9,7 +9,7 @@ const users = [
 
 users.forEach((user) => {
     user.salt = crypto.randomBytes(16).toString('hex');
-    user.hashed_password = crypto.scryptSync(user.hashed_password, user.salt, 32).toString('hex');
+    user.hashed_password = crypto.scryptSync(user.hashed_password, user.salt, 64).toString('hex');
 });
 
 const lines = [
