@@ -2,9 +2,9 @@ import db from "./connection.js";
 import crypto from "crypto";
 
 const users = [
-    { id: 1, username: 'AbRezaei', hashed_password: 'password' },
-    { id: 2, username: 'Player 01', hashed_password: 'simple_password' },
-    { id: 3, username: 'Player 02', hashed_password: 'strong_password' },
+    { id: 1, username: 'abrezaei', hashed_password: 'password' },
+    { id: 2, username: 'player-1', hashed_password: 'simple_password' },
+    { id: 3, username: 'player-2', hashed_password: 'strong_password' },
 ];
 
 users.forEach((user) => {
