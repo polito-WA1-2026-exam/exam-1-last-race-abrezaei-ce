@@ -5,8 +5,8 @@ import db from "./database/connection.js";
 import { getUserByUsernameAndPassword } from "../repositories/userRepository.js";
 
 passport.use(
-  new LocalStrategy(function verify(username, password, callback) {
-    const user = await getUserByUsernameAndPassword(username, passport);
+  new LocalStrategy(async function verify(username, password, callback) {
+    const user = await getUserByUsernameAndPassword(username, password);
 
     if (!user) return callback(null, false);
 
