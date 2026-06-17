@@ -7,6 +7,8 @@ import sessionConfig from './config/sessionConfig.js';
 
 import router from './router/index.js';
 
+import ecxeptionHandler from './middlewares/ecxeptionHandler.js';
+
 // init express
 const app = express();
 const port = 3001;
@@ -18,6 +20,8 @@ app.use(passportConfig.authenticate('session'));
 app.use(express.json());
 
 app.use('/api', router);
+
+app.use(ecxeptionHandler);
 
 // activate the server
 app.listen(port, () => {
