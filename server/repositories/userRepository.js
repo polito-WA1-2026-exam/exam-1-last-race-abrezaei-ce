@@ -2,7 +2,7 @@ import { queryGet } from "../utils/query.js";
 import crypto from "node:crypto";
 
 async function getUserByUsernameAndPassword(username, password) {
-    const user = await queryGet("SELECT * FROM users WHERE username = ?", [username]);
+    const user = await queryGet('SELECT * FROM users WHERE username = ?', [username]);
 
     if (!user) return false;
 
