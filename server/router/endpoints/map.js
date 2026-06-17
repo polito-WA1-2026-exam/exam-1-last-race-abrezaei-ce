@@ -3,8 +3,8 @@ import wrapController from '../../utils/wrapController.js';
 import mapController from '../../controllers/mapController.js';
 import isAuthenticated from '../../middlewares/isAuthenticated.js';
 
-const mapRouter = express.Router();
+const mapRoutes = express.Router();
 
-mapRouter.get('', isAuthenticated, wrapController(mapController.map));
+mapRoutes.get('', isAuthenticated, wrapController(mapController.map));
 
-export default mapRouter;
+export default mapRoutes;

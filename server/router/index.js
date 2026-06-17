@@ -1,12 +1,14 @@
 import express from "express";
 import authRoutes from './endpoints/auth.js';
 import userRoutes from './endpoints/user.js';
-import mapRouter from "./endpoints/map.js";
+import mapRoutes from "./endpoints/map.js";
+import stationsRoutes from "./endpoints/stations.js";
 
 const router = express.Router();
 
 router.use("/auth", authRoutes);
 router.use("/user", userRoutes);
-router.use("/map", mapRouter);
+router.use("/map", mapRoutes);
+router.use("/stations", stationsRoutes);
 
 export default router;
