@@ -1,19 +1,19 @@
 import express from "express";
 import passport from "passport";
 
-const router = express.Router();
+const authRoutes = express.Router();
 
-router.post("/auth/login", passport.authenticate("local"), (req, res) => {
+authRoutes.post("/login", passport.authenticate("local"), (req, res) => {
     res.json(req.user);
 });
 
-router.delete("/auth/logout", (req, res) => {
+authRoutes.delete("/logout", (req, res) => {
     req.logout(() => {
         res.end();
     });
 });
 
-router.get("/auth/check", (req, res) => {
+authRoutes.get("/check", (req, res) => {
     if (req.isAuthenticated()) {
         res.json(req.user);
     } else {
@@ -21,4 +21,4 @@ router.get("/auth/check", (req, res) => {
     }
 });
 
-export default router;
+export default authRoutes;

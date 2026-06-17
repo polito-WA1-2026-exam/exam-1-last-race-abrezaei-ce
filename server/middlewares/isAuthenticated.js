@@ -1,7 +1,9 @@
-import { responseError } from "../utils/response";
+import { responseError } from "../utils/response.js";
 
 function isAuthenticated(req, res, next) {
     if (req.isAuthenticated()) return next();
 
     return responseError(res, null, 'Not Authenticated!', 401);
 }
+
+export default isAuthenticated;

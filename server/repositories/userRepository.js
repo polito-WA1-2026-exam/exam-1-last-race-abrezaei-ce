@@ -1,4 +1,4 @@
-import { queryGet } from "../utils/query";
+import { queryGet } from "../utils/query.js";
 import crypto from "node:crypto";
 
 async function getUserByUsernameAndPassword(username, password) {
