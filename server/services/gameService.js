@@ -81,7 +81,7 @@ async function submitRoute(gameId, userId, route) {
     if (!validation.valid) {
         await updateGame(gameId, 0, serializeHistory(validation.history));
 
-        return { game: await getGameForUser(gameId, userId), message: "Game lost due to invalid route" };
+        return { game: await getGameForUser(gameId, userId), message: validation.history[0].description };
     }
 
     const events = await listEvents();

@@ -19,7 +19,7 @@ function normalizeHistoryItem(item) {
     return {
         step: item.step ?? null,
         type: type,
-        description: type === "event" ? item.description : "Game ended",
+        description: item.description,
         segment_id: item.segment_id ?? null,
         event_id: item.event_id ?? null,
         effect: item.effect ?? 0,

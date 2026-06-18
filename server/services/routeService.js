@@ -77,6 +77,8 @@ function getInterchangeStationIds(segments) {
 async function validateRoute(route, game) {
     if (!route || !Array.isArray(route) || route.length === 0) return { valid: false, history: makePenaltyHistory("Empty route submitted") };
 
+    if (game.started_at - Math.floor(Date.now() / 1000) > 92) return { valid: false, history: makePenaltyHistory("Time has expired") };
+
     const segments = await listSegments();
     const interchangeStationIds = getInterchangeStationIds(segments);
     const usedSegmentIds = new Set();
