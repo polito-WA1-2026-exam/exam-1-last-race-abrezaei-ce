@@ -15,24 +15,51 @@ const gamesController = {
         return responseSuccess(res, game, "Game retrieved");
     },
 
-    // todo: check minimum segments >= 3
     start: async (req, res) => {
         const activeGame = await getActiveGameByUserId(req.user.id);
 
         if (activeGame) return responseError(res, null, "You have a game already in progress", 400);
 
         const stations = await listStations();
+        const segments = await listSegments();
 
-        let originIndex = Math.floor(Math.random() * stations.length);
-        let destinationIndex = Math.floor(Math.random() * stations.length);
+        let adjacencyList = {};
 
-        while (originIndex === destinationIndex) {
-            destinationIndex = Math.floor(Math.random() * stations.length);
+        stations.forEach(station => adjacencyList[station.id] = []);
+        segments.forEach(segment => {
+            adjacencyList[segment.origin].push(segment.destination);
+            adjacencyList[segment.destination].push(segment.origin);
+        });
+
+        let origin;
+        let validDestinations = [];
+
+        while (validDestinations.length === 0) {
+            origin = stations[Math.floor(Math.random() * stations.length)];
+
+            const distances = { [origin.id]: 0 };
+            const queue = [origin.id];
+
+            while (queue.length > 0) {
+                const currentId = queue.shift();
+                const currentDist = distances[currentId];
+
+                adjacencyList[currentId].forEach(neighborId => {
+                    if (distances[neighborId] === undefined) {
+                        distances[neighborId] = currentDist + 1;
+                        queue.push(neighborId);
+
+                        if (distances[neighborId] >= 3) {
+                            validDestinations.push(neighborId);
+                        }
+                    }
+                });
+            }
         }
 
-        const origin = stations[originIndex];
-        const destination = stations[destinationIndex];
-        const startedAt = Date.now() / 1000;
+        const destinationId = validDestinations[Math.floor(Math.random() * validDestinations.length)];
+        const destination = stations.find(s => s.id === destinationId);
+        const startedAt = Math.floor(Date.now() / 1000);
 
         const gameId = await createGame(req.user.id, origin.id, destination.id, startedAt);
 
@@ -44,45 +71,67 @@ const gamesController = {
         }, "Game started");
     },
 
-    // todo: add constraints
     submit: async (req, res) => {
         const { route } = req.body;
+        const gameId = req.params.id;
 
-        const game = await getGameById(req.params.id);
+        const game = await getGameById(gameId);
 
-        if (!game || game.user_id !== req.user.id || game.history !== null) return responseError(res, null, "Invalid request", 400);
+        if (!game || game.user_id !== req.user.id || game.history !== null) {
+            return responseError(res, null, "Invalid request", 400);
+        }
 
-        const elapsedTime = (Date.now() - game.started_at) / 1000;
+        const elapsedTime = Math.floor(Date.now() / 1000) - game.started_at;
 
         if (elapsedTime > 90) {
             const history = JSON.stringify([{ step: 1, description: "Time expired", effect: -20 }]);
+            await updateGame(gameId, 0, history);
 
-            await updateGame(req.params.id, 0, history);
-
-            return responseError(res, null, "Time expired", 400);
+            const updatedGame = await getGameById(gameId);
+            updatedGame.history = JSON.parse(updatedGame.history);
+            return responseSuccess(res, updatedGame, "Game lost due to timeout");
         }
 
-        if (!route || !Array.isArray(route) || route[0] !== game.origin) return responseError(res, null, "Invalid route", 400);
+        if (!route || !Array.isArray(route) || route.length === 0) {
+            const history = JSON.stringify([{ step: 1, description: "Empty route submitted", effect: -20 }]);
+            await updateGame(gameId, 0, history);
+
+            const updatedGame = await getGameById(gameId);
+            updatedGame.history = JSON.parse(updatedGame.history);
+            return responseSuccess(res, updatedGame, "Game lost due to invalid route");
+        }
 
         const segments = await listSegments();
         const events = await listEvents();
 
         let finalScore = 20;
         const gameHistory = [];
+        let currentStation = game.origin;
+        let isFailed = false;
 
-        for (let i = 0; i < route.length - 1; i++) {
-            const current = route[i];
-            const next = route[i + 1];
+        for (let i = 0; i < route.length; i++) {
+            const segment = segments.find(s => s.id === route[i]);
 
-            const segment = segments.find(s =>
-                (s.origin === current && s.destination === next) ||
-                (s.origin === next && s.destination === current)
-            );
+            if (!segment) {
+                gameHistory.push({ step: i + 1, description: "Invalid segment selected", effect: -finalScore });
+                isFailed = true;
+                finalScore = 0;
+                break;
+            }
 
-            if (!segment) return responseError(res, null, "Invalid move", 400);
+            let nextStation;
+            if (segment.origin === currentStation) {
+                nextStation = segment.destination;
+            } else if (segment.destination === currentStation) {
+                nextStation = segment.origin;
+            } else {
+                gameHistory.push({ step: i + 1, description: "Disconnected segment", effect: -finalScore });
+                isFailed = true;
+                finalScore = 0;
+                break;
+            }
 
             const event = events[Math.floor(Math.random() * events.length)];
-
             finalScore += event.effect;
 
             gameHistory.push({
@@ -92,23 +141,25 @@ const gamesController = {
                 description: event.description,
                 effect: event.effect
             });
+
+            currentStation = nextStation;
         }
 
-        const isCompleted = route[route.length - 1] === game.destination;
-
-        if (!isCompleted) {
+        if (!isFailed && currentStation !== game.destination) {
             gameHistory.push({
-                step: route.length,
-                segment_id: null,
-                event_id: null,
+                step: route.length + 1,
                 description: "Failed to reach destination",
-                effect: 0
+                effect: -finalScore
             });
+            finalScore = 0;
         }
 
-        const temp = await updateGame(req.params.id, finalScore, JSON.stringify(gameHistory));
+        await updateGame(gameId, finalScore, JSON.stringify(gameHistory));
 
-        return responseSuccess(res, temp, "Game processed");
+        const updatedGame = await getGameById(gameId);
+        updatedGame.history = JSON.parse(updatedGame.history);
+
+        return responseSuccess(res, updatedGame, "Game processed");
     },
 }
 
