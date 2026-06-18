@@ -12,12 +12,12 @@ async function getGameById(id) {
     return await queryGet('SELECT * FROM games WHERE id = ?', [id]);
 }
 
-async function getActiveGameByUserId(userId) {
-    return await queryGet('SELECT * FROM games WHERE user_id = ? AND history IS NULL', [userId]);
-}
-
 async function updateGame(id, score, history) {
     return await queryRun('UPDATE games SET score = ?, history = ? WHERE id = ?', [score, history, id]);
 }
 
-export { createGame, getActiveGameByUserId, getGameById, updateGame }
+async function finishActiveGamesByUserId(userId, score, history) {
+    return await queryRun('UPDATE games SET score = ?, history = ? WHERE user_id = ? AND history IS NULL', [score, history, userId]);
+}
+
+export { createGame, finishActiveGamesByUserId, getGameById, updateGame }

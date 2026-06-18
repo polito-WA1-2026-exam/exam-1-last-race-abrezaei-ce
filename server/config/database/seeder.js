@@ -1,6 +1,6 @@
-import { start } from "repl";
 import db from "./connection.js";
 import crypto from "crypto";
+import { executeRoute } from "../../services/gameService.js";
 
 const users = [
     { id: 1, username: 'abrezaei', hashed_password: 'password' },
@@ -74,33 +74,39 @@ const games = [
         user_id: 1,
         origin: 1,
         destination: 16,
-        score: 25,
+        ...executeRoute(
+            [
+                { segment_id: 1, event_id: 5 },
+                { segment_id: 2, event_id: 6 },
+                { segment_id: 3, event_id: 8 },
+                { segment_id: 4, event_id: 4 },
+                { segment_id: 5, event_id: 7 },
+                { segment_id: 6, event_id: 3 }
+            ],
+            events,
+            true
+        ),
         started_at: 1781733600,
-        history: [
-            { step: 1, segment_id: 1, event_id: 5, effect: 1 },
-            { step: 2, segment_id: 2, event_id: 6, effect: 2 },
-            { step: 3, segment_id: 3, event_id: 8, effect: 4 },
-            { step: 4, segment_id: 4, event_id: 4, effect: -1 },
-            { step: 5, segment_id: 5, event_id: 7, effect: 3 },
-            { step: 6, segment_id: 6, event_id: 3, effect: -2 }
-        ]
     },
     {
         id: 2,
         user_id: 2,
         origin: 6,
         destination: 15,
-        score: 18,
+        ...executeRoute(
+            [
+                { segment_id: 10, event_id: 8 },
+                { segment_id: 11, event_id: 3 },
+                { segment_id: 12, event_id: 5 },
+                { segment_id: 13, event_id: 6 },
+                { segment_id: 14, event_id: 2 }
+            ],
+            events,
+            true),
         started_at: 1781733600,
-        history: [
-            { step: 1, segment_id: 10, event_id: 8, effect: 4 },
-            { step: 2, segment_id: 11, event_id: 3, effect: -2 },
-            { step: 3, segment_id: 12, event_id: 5, effect: 1 },
-            { step: 4, segment_id: 13, event_id: 6, effect: 2 },
-            { step: 5, segment_id: 14, event_id: 2, effect: -3 }
-        ]
     }
 ];
+
 
 db.serialize(() => {
     users.forEach((user) => {
@@ -116,7 +122,7 @@ db.serialize(() => {
 
     stations.forEach((station) => {
         db.run(
-            "INSERT INTO stations (id, name, x, y) VALUES (?, ?, ?, ?)", 
+            "INSERT INTO stations (id, name, x, y) VALUES (?, ?, ?, ?)",
             [station.id, station.name, station.x, station.y]
         );
     });
