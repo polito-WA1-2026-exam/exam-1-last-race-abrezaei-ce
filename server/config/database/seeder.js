@@ -1,3 +1,4 @@
+import { start } from "repl";
 import db from "./connection.js";
 import crypto from "crypto";
 
@@ -74,6 +75,7 @@ const games = [
         origin: 1,
         destination: 16,
         score: 25,
+        started_at: 1781733600,
         history: [
             { step: 1, segment_id: 1, event_id: 5, effect: 1 },
             { step: 2, segment_id: 2, event_id: 6, effect: 2 },
@@ -89,6 +91,7 @@ const games = [
         origin: 6,
         destination: 15,
         score: 18,
+        started_at: 1781733600,
         history: [
             { step: 1, segment_id: 10, event_id: 8, effect: 4 },
             { step: 2, segment_id: 11, event_id: 3, effect: -2 },
@@ -134,8 +137,8 @@ db.serialize(() => {
 
     games.forEach((game) => {
         db.run(
-            "INSERT INTO games (id, user_id, origin, destination, score, history) VALUES (?, ?, ?, ?, ?, ?)",
-            [game.id, game.user_id, game.origin, game.destination, game.score, JSON.stringify(game.history)]
+            "INSERT INTO games (id, user_id, origin, destination, score, started_at, history) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            [game.id, game.user_id, game.origin, game.destination, game.score, game.started_at, JSON.stringify(game.history)]
         );
     });
 });
