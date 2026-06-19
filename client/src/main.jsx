@@ -4,6 +4,12 @@ import { RouterProvider } from "react-router/dom";
 import router from "@/router";
 import '@/assets/css/style.css';
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />,
+window.document.documentElement.classList.add(
+  window.matchMedia("(prefers-color-scheme: dark)").matches ?
+    "dark" :
+    "light"
 );
+
+ReactDOM
+  .createRoot(document.getElementById("root"))
+  .render(<RouterProvider router={router} />);
