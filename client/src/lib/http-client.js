@@ -1,4 +1,5 @@
 import axios from "axios";
+import { redirect } from "react-router";
 import { toast } from "sonner";
 
 const axiosInstance = axios.create({
@@ -6,11 +7,12 @@ const axiosInstance = axios.create({
     withCredentials: true
 });
 
+// todo: defer toast call
 function handleError(error) {
     switch (error.response?.status) {
         case 401:
             toast.error("401 Unauthorized");
-            window.location.href = '/login';
+            return redirect("/auth/login");
 
             break;
         case 403:

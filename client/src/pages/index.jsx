@@ -1,4 +1,4 @@
-function PageIndex(){
+function PageIndex() {
     return (
         <div>
             <h1>This is index page!</h1>

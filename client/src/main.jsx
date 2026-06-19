@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router/dom";
 import router from "@/router";
 import '@/assets/css/style.css';
+import { Toaster } from "@/components/ui/sonner";
 
 window.document.documentElement.classList.add(
   window.matchMedia("(prefers-color-scheme: dark)").matches ?
@@ -12,4 +13,11 @@ window.document.documentElement.classList.add(
 
 ReactDOM
   .createRoot(document.getElementById("root"))
-  .render(<RouterProvider router={router} />);
+  .render(
+    <React.StrictMode>
+
+      <Toaster />
+      <RouterProvider router={router} />
+
+    </React.StrictMode>
+  );
