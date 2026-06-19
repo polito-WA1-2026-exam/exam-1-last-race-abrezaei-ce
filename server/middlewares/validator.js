@@ -9,7 +9,7 @@ function validator(rules) {
 
         if (errors.isEmpty()) return next();
 
-        return responseError(res, errors.array(), "Validation failed", 400);
+        return responseError(res, errors.array(), "Validation failed", 422);
     };
 };
 
