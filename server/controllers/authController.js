@@ -11,11 +11,11 @@ const authController = {
             return responseSuccess(res, null, "Logout successful");
         });
     },
-    check: (req, res) => {
+    user: (req, res) => {
         if (req.isAuthenticated())
             return responseSuccess(res, req.user, "Authenticated");
         else
-            return responseError(res, null, "Not authenticated", 401);
+            return responseSuccess(res, null, "Not Authenticated");
     }
 }
 

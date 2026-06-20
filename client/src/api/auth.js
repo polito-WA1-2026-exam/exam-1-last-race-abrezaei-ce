@@ -3,7 +3,7 @@ import httpClient from "@/lib/http-client";
 const authApi = {
     login: (payload) => httpClient.post('/auth/login', payload),
     logout: () => httpClient.post('/auth/logout'),
-    check: () => httpClient.get('/auth/check')
+    user: () => httpClient.get('/auth/user')
 };
 
 export default authApi;

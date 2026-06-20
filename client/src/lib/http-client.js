@@ -11,7 +11,7 @@ function handleError(error) {
     switch (error.response?.status) {
         case 401:
             toast.error(error.response?.data?.message || "401 Unauthorized");
-            return redirect("/auth/login");
+            throw redirect("/auth/login");
 
             break;
         case 403:

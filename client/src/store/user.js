@@ -10,7 +10,7 @@ const useUserStore = create((set, get) => ({
 
         if (user) return user;
 
-        const response = await api.auth.check();
+        const response = await api.auth.user();
 
         if (response.success) set({ user: response.data });
         else set({ user: null });

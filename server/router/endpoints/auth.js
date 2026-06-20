@@ -33,6 +33,6 @@ authRoutes.post(
     wrapController(authController.login)
 );
 authRoutes.post('/logout', isAuthenticated, wrapController(authController.logout));
-authRoutes.get('/check', wrapController(authController.check));
+authRoutes.get('/user', wrapController(authController.user));
 
 export default authRoutes;

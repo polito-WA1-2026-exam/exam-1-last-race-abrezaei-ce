@@ -55,7 +55,7 @@ function Navbar({ className, ...props }) {
                             </NavigationMenuItem>
                             <NavigationMenuItem>
                                 <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                                    <Link to="/game">Game</Link>
+                                    <Link to="/game">Let's Play</Link>
                                 </NavigationMenuLink>
                             </NavigationMenuItem>
                             <NavigationMenuItem>
