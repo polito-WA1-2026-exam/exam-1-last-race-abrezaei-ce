@@ -11,8 +11,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 function PageLogin() {
   const navigate = useNavigate();
   const formSchema = zod.object({
-    username: zod.string().nonempty(),
-    password: zod.string().nonempty()
+    username: zod.string().nonempty("Username is required"),
+    password: zod.string().nonempty("Password is required")
   });
   const form = useForm({
     resolver: zodResolver(formSchema),

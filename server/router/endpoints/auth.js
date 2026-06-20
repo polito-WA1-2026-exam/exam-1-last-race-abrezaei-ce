@@ -13,8 +13,8 @@ authRoutes.post(
     '/login',
     validator(
         [
-            body("username").notEmpty().withMessage("Username is required").isString(),
-            body("password").notEmpty().withMessage("Password is required").isString()
+            body("username").notEmpty().withMessage("Username is required").isString().escape(),
+            body("password").notEmpty().withMessage("Password is required").isString().escape()
         ]
     ),
     (req, res, next) => {
