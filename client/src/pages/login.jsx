@@ -51,7 +51,7 @@ function PageLogin() {
                     {...field}
                     id='username'
                     type='text'
-                    placeholder="player"
+                    placeholder="Username"
                     aria-invalid={fieldState.invalid} />
                   {
                     fieldState.invalid
