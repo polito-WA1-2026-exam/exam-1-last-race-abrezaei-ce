@@ -16,6 +16,17 @@ const useUserStore = create((set, get) => ({
         else set({ user: null });
 
         return get().user;
+    },
+    logout: async () => {
+        const response = await api.auth.logout();
+
+        if (response.success) {
+            set({ user: null });
+
+            return true;
+        }
+
+        return false;
     }
 }));
 

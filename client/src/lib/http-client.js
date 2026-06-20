@@ -7,7 +7,6 @@ const axiosInstance = axios.create({
     withCredentials: true
 });
 
-// todo: defer toast call
 function handleError(error) {
     switch (error.response?.status) {
         case 401:
