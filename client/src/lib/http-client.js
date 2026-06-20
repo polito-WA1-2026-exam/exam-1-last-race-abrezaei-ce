@@ -10,16 +10,16 @@ const axiosInstance = axios.create({
 function handleError(error) {
     switch (error.response?.status) {
         case 401:
-            toast.error("401 Unauthorized");
+            toast.error(error.response?.data?.message || "401 Unauthorized");
             return redirect("/auth/login");
 
             break;
         case 403:
-            toast.error("403 Forbidden");
+            toast.error(error.response?.data?.message || "403 Forbidden");
 
             break;
         case 422:
-            const data = error.response.data || [];
+            const data = error.response.data.data || [];
 
             data.forEach((item) => { toast.error(item.msg); });
 
