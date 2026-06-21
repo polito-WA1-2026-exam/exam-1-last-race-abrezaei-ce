@@ -10,7 +10,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Link, useParams } from "react-router";
 import * as zod from 'zod';
-import { CircleMinus, CirclePlus } from "lucide-react"
+import { CircleMinus, CirclePlus, ArrowRight } from "lucide-react"
 import {
     Item,
     ItemContent,
@@ -171,14 +171,15 @@ function PageGame() {
                                                                 isWin
                                                                 &&
                                                                 <ItemDescription className="flex items-center gap-2">
-                                                                    <span>{`${stations.find((station) => station.id === segments.find((segment) => segment.id === item.segment_id)?.origin)?.name}`}</span>
-                                                                    <span>-</span>
-                                                                    <span>{`${stations.find((station) => station.id === segments.find((segment) => segment.id === item.segment_id)?.destination)?.name}`}</span>
+                                                                    <span>{stations.find(st => st.id === item.user_origin)?.name}</span>
+                                                                    <ArrowRight className="w-3 h-3" />
+                                                                    <span>{stations.find(st => st.id === item.user_destination)?.name}</span>
                                                                 </ItemDescription>
+
                                                             }
                                                         </ItemContent>
                                                         <ItemContent className="flex-none text-center">
-                                                            <ItemDescription className={item.effect > 0 ? 'text-green-600' : 'text-red-600'}>{item.effect}</ItemDescription>
+                                                            <ItemDescription className={`text-2xl font-bold ${item.effect > 0 ? 'text-green-600' : 'text-red-600'}`}>{item.effect}</ItemDescription>
                                                         </ItemContent>
                                                     </Item>
                                                 )

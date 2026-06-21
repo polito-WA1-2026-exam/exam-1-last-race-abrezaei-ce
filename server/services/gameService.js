@@ -31,7 +31,9 @@ function executeRoute(segments, events, isPredefined = false) {
             event_id: event.id,
             effect: event.effect,
             score_before: scoreBefore,
-            score_after: score
+            score_after: score,
+            user_origin: segment.user_origin,
+            user_destination: segment.user_destination
         };
     });
 

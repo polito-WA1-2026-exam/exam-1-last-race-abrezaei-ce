@@ -108,7 +108,11 @@ async function validateRoute(route, game) {
             return { valid: false, history: makePenaltyHistory("Line changes are allowed only at interchange stations", step) };
 
         usedSegmentIds.add(segmentId);
-        selectedSegments.push(segment);
+        selectedSegments.push({
+            ...segment,
+            user_origin: currentStation,
+            user_destination: nextStation
+        });
 
         currentStation = nextStation;
         previousLineId = segment.line_id;

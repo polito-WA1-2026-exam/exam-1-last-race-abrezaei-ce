@@ -1,6 +1,13 @@
 import db from "./connection.js";
 
 db.serialize(() => {
+  db.run(`DROP TABLE IF EXISTS games`);
+  db.run(`DROP TABLE IF EXISTS segments`);
+  db.run(`DROP TABLE IF EXISTS events`);
+  db.run(`DROP TABLE IF EXISTS users`);
+  db.run(`DROP TABLE IF EXISTS lines`);
+  db.run(`DROP TABLE IF EXISTS stations`);
+
   db.run(`CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT UNIQUE NOT NULL,

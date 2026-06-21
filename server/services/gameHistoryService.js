@@ -9,7 +9,9 @@ function makePenaltyHistory(description, step = 1, scoreBefore = parseInt(proces
         event_id: null,
         effect: -scoreBefore,
         score_before: scoreBefore,
-        score_after: 0
+        score_after: 0,
+        actual_origin: null,
+        actual_destination: null
     }];
 }
 

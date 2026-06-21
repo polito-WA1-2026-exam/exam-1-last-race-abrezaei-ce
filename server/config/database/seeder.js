@@ -76,12 +76,12 @@ const games = [
         destination: 16,
         ...executeRoute(
             [
-                { segment_id: 1, event_id: 5 },
-                { segment_id: 2, event_id: 6 },
-                { segment_id: 3, event_id: 8 },
-                { segment_id: 4, event_id: 4 },
-                { segment_id: 5, event_id: 7 },
-                { segment_id: 6, event_id: 3 }
+                { id: 1, user_origin: 1, user_destination: 2, event_id: 5 },
+                { id: 2, user_origin: 2, user_destination: 3, event_id: 6 },
+                { id: 3, user_origin: 3, user_destination: 8, event_id: 8 },
+                { id: 4, user_origin: 8, user_destination: 10, event_id: 4 },
+                { id: 5, user_origin: 10, user_destination: 13, event_id: 7 },
+                { id: 6, user_origin: 13, user_destination: 16, event_id: 3 }
             ],
             events,
             true
@@ -95,11 +95,11 @@ const games = [
         destination: 15,
         ...executeRoute(
             [
-                { segment_id: 10, event_id: 8 },
-                { segment_id: 11, event_id: 3 },
-                { segment_id: 12, event_id: 5 },
-                { segment_id: 13, event_id: 6 },
-                { segment_id: 14, event_id: 2 }
+                { id: 10, user_origin: 6, user_destination: 7, event_id: 8 },
+                { id: 11, user_origin: 7, user_destination: 10, event_id: 3 },
+                { id: 5, user_origin: 10, user_destination: 13, event_id: 5 }, 
+                { id: 14, user_origin: 13, user_destination: 14, event_id: 6 },
+                { id: 15, user_origin: 14, user_destination: 15, event_id: 2 }
             ],
             events,
             true),
