@@ -28,11 +28,13 @@ function PageMap() {
     return (
         <div className="grid grid-cols-10 gap-6">
 
-            {
-                map
-                &&
-                <MapDisplay className="col-span-7" segments={map.segments} stations={map.stations} />
-            }
+            <div className="col-span-7">
+                {
+                    map
+                    &&
+                    <MapDisplay segments={map.segments} stations={map.stations} />
+                }
+            </div>
             <div className="col-span-3">
                 <Card>
 

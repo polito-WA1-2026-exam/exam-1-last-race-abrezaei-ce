@@ -78,13 +78,13 @@ function PageGame() {
     return (
         <div className="grid grid-cols-10 gap-6">
 
-            {
-                stations.length > 0 && segments.length > 0
-                &&
-                <div className="col-span-7">
+            <div className="col-span-7">
+                {
+                    stations.length > 0 && segments.length > 0
+                    &&
                     <MapDisplay segments={isGameOver ? segments : null} stations={stations} />
-                </div>
-            }
+                }
+            </div>
             {
                 game
                 &&
