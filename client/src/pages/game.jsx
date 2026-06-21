@@ -186,7 +186,7 @@ function PageGame() {
                                             }
                                         </div>
                                         <Button className="w-full" size="lg" asChild>
-                                            <Link to="/map">Play Again</Link>
+                                            <Link to="/map" viewTransition>Play Again</Link>
                                         </Button>
 
                                     </CardContent>

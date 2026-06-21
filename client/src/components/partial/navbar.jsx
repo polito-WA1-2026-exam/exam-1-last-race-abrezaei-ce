@@ -29,14 +29,14 @@ function Navbar({ className, ...props }) {
     const logout = useUserStore((state) => state.logout);
 
     async function handleLogout() {
-        if (await logout()) navigate('/');
+        if (await logout()) navigate('/', { viewTransition: true });
     }
 
     return (
         <nav className="bg-background fixed w-full z-20 top-0 start-0 border-b border-default">
             <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4">
 
-                <Link to="/" className="flex items-center space-x-3">
+                <Link to="/" className="flex items-center space-x-3" viewTransition>
 
                     <img src={logo} className="h-7" alt="Flowbite Logo" />
                     <span className="self-center text-xl text-heading font-semibold whitespace-nowrap">Last Race</span>
@@ -49,18 +49,18 @@ function Navbar({ className, ...props }) {
                         <NavigationMenuList>
 
                             <NavigationMenuItem>
-                                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                                    <Link to="/">Home</Link>
+                                <NavigationMenuLink asChild>
+                                    <Link to="/" viewTransition>Home</Link>
                                 </NavigationMenuLink>
                             </NavigationMenuItem>
                             <NavigationMenuItem>
-                                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                                    <Link to="/map">Let's Play</Link>
+                                <NavigationMenuLink asChild>
+                                    <Link to="/map" viewTransition>Let's Play</Link>
                                 </NavigationMenuLink>
                             </NavigationMenuItem>
                             <NavigationMenuItem>
-                                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                                    <Link to="/leaderboard">Leaderboard</Link>
+                                <NavigationMenuLink asChild>
+                                    <Link to="/leaderboard" viewTransition>Leaderboard</Link>
                                 </NavigationMenuLink>
                             </NavigationMenuItem>
 
@@ -92,7 +92,7 @@ function Navbar({ className, ...props }) {
                         </AlertDialog>
                         :
                         <Button asChild>
-                            <Link to="/auth/login">Login</Link>
+                            <Link to="/auth/login" viewTransition>Login</Link>
                         </Button>
                 }
 

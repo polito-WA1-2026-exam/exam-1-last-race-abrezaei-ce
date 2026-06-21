@@ -18,7 +18,7 @@ function PageIndex() {
                         user
                         &&
                         <Button asChild>
-                            <Link to='/map'>Let's Play</Link>
+                            <Link to='/map' viewTransition>Let's Play</Link>
                         </Button>
                     }
 

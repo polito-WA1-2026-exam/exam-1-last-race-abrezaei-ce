@@ -25,7 +25,7 @@ function PageLogin() {
   async function handleLogin(data) {
     const response = await api.auth.login(data);
 
-    if (response.success) navigate('/');
+    if (response.success) navigate('/', {viewTransition: true});
   }
 
   return (

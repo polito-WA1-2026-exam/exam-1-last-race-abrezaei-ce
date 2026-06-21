@@ -22,7 +22,7 @@ function PageMap() {
     async function startGame() {
         const response = await api.game.start();
 
-        if (response.success) navigate(`/game/${response.data.game_id}`);
+        if (response.success) navigate(`/game/${response.data.game_id}`, {viewTransition: true});
     }
 
     return (
