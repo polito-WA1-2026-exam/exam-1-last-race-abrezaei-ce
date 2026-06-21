@@ -27,7 +27,7 @@ function executeRoute(segments, events, isPredefined = false) {
             step: index + 1,
             type: "event",
             description: event.description,
-            segment_id: segment.segment_id,
+            segment_id: segment.id,
             event_id: event.id,
             effect: event.effect,
             score_before: scoreBefore,

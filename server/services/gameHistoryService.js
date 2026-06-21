@@ -13,25 +13,10 @@ function makePenaltyHistory(description, step = 1, scoreBefore = parseInt(proces
     }];
 }
 
-function normalizeHistoryItem(item) {
-    const type = item.type ?? (item.event_id ? "event" : "penalty");
-
-    return {
-        step: item.step ?? null,
-        type: type,
-        description: item.description,
-        segment_id: item.segment_id ?? null,
-        event_id: item.event_id ?? null,
-        effect: item.effect ?? 0,
-        score_before: item.score_before ?? null,
-        score_after: item.score_after ?? null
-    };
-}
-
 function parseHistory(history) {
     if (!history) return [];
 
-    return JSON.parse(history).map(normalizeHistoryItem);
+    return JSON.parse(history);
 }
 
 function serializeHistory(history) {

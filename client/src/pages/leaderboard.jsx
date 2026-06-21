@@ -58,7 +58,7 @@ function PageLeaderboard() {
                 <TableBody>
                     {
                         list.map((item, index) =>
-                            <TableRow>
+                            <TableRow key={index}>
 
                                 <TableCell className="flex justify-center items-center py-4">{getRankIcon(index)}</TableCell>
                                 <TableCell className="font-medium">{item.username}</TableCell>
