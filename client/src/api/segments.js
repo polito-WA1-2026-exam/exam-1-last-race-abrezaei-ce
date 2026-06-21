@@ -1,7 +1,7 @@
 import httpClient from "@/lib/http-client";
 
-const segmentApi = {
+const segmentsApi = {
     list: () => httpClient.get('/segments')
 };
 
-export default segmentApi;
+export default segmentsApi;

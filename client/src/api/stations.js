@@ -1,7 +1,7 @@
 import httpClient from "@/lib/http-client";
 
-const stationApi = {
+const stationsApi = {
     list: () => httpClient.get('/stations')
 };
 
-export default stationApi;
+export default stationsApi;

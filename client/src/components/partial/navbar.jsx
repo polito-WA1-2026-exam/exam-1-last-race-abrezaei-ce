@@ -34,7 +34,7 @@ function Navbar({ className, ...props }) {
 
     return (
         <nav className="bg-background fixed w-full z-20 top-0 start-0 border-b border-default">
-            <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4">
 
                 <Link to="/" className="flex items-center space-x-3">
 
@@ -55,7 +55,7 @@ function Navbar({ className, ...props }) {
                             </NavigationMenuItem>
                             <NavigationMenuItem>
                                 <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                                    <Link to="/game">Let's Play</Link>
+                                    <Link to="/map">Let's Play</Link>
                                 </NavigationMenuLink>
                             </NavigationMenuItem>
                             <NavigationMenuItem>

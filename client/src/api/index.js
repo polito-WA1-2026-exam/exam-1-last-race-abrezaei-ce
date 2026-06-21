@@ -2,16 +2,16 @@ import authApi from "./auth";
 import gameApi from "./game";
 import leaderboardApi from "./leaderboard";
 import mapApi from "./map";
-import segmentApi from "./segment";
-import stationApi from "./station";
+import segmentsApi from "./segments";
+import stationsApi from "./stations";
 
 
 const api = {
     auth: authApi,
     game: gameApi,
     map: mapApi,
-    station: stationApi,
-    segment: segmentApi,
+    segments: segmentsApi,
+    stations: stationsApi,
     leaderboard: leaderboardApi,
 }
 

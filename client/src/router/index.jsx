@@ -4,8 +4,10 @@ import LayoutError from "@/layouts/error";
 import auth from "@/middlewares/auth";
 import PageIndex from "@/pages";
 import Page404 from "@/pages/404";
+import PageGame from "@/pages/game";
 import PageLeaderboard from "@/pages/leaderboard";
 import PageLogin from "@/pages/login";
+import PageMap from "@/pages/map";
 import useUserStore from "@/store/user";
 import { createBrowserRouter } from "react-router";
 
@@ -17,6 +19,16 @@ const router = createBrowserRouter([
             {
                 index: true,
                 Component: PageIndex
+            },
+            {
+                path: '/map',
+                middleware: [auth],
+                Component: PageMap
+            },
+            {
+                path: '/game/:gameId',
+                middleware: [auth],
+                Component: PageGame
             },
             {
                 path: '/leaderboard',
