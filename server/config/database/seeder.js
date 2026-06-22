@@ -14,10 +14,10 @@ users.forEach((user) => {
 });
 
 const lines = [
-    { id: 1, name: 'Red Line' },
-    { id: 2, name: 'Green Line' },
-    { id: 3, name: 'Blue Line' },
-    { id: 4, name: 'Black Line' },
+    { id: 1, name: 'Po Line', color: '#2B7FFF' },
+    { id: 2, name: 'Mole Line', color: '#FB2C36' },
+    { id: 3, name: 'Valentino Line', color: '#00C950' },
+    { id: 4, name: 'Alpina Line', color: '#6A7282' },
 ];
 
 const stations = [
@@ -117,7 +117,7 @@ db.serialize(() => {
     });
 
     lines.forEach((line) => {
-        db.run("INSERT INTO lines (id, name) VALUES (?, ?)", [line.id, line.name]);
+        db.run("INSERT INTO lines (id, name, color) VALUES (?, ?, ?)", [line.id, line.name, line.color]);
     });
 
     stations.forEach((station) => {

@@ -17,7 +17,8 @@ db.serialize(() => {
 
   db.run(`CREATE TABLE IF NOT EXISTS lines (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT UNIQUE NOT NULL
+    name TEXT UNIQUE NOT NULL,
+    color TEXT UNIQUE NOT NULL
   )`);
 
   db.run(`CREATE TABLE IF NOT EXISTS stations (

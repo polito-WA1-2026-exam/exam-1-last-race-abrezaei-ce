@@ -22,7 +22,7 @@ function PageMap() {
     async function startGame() {
         const response = await api.games.start();
 
-        if (response.success) navigate(`/games/${response.data.game_id}`, {viewTransition: true});
+        if (response.success) navigate(`/games/${response.data.game_id}`, { viewTransition: true });
     }
 
     return (
@@ -32,7 +32,7 @@ function PageMap() {
                 {
                     map
                     &&
-                    <MapDisplay segments={map.segments} stations={map.stations} />
+                    <MapDisplay lines={map.lines} segments={map.segments} stations={map.stations} />
                 }
             </div>
             <div className="col-span-3">

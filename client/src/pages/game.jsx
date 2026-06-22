@@ -22,6 +22,7 @@ import {
 function PageGame() {
     const params = useParams();
     const [game, setGame] = useState(null);
+    const [lines, setLines] = useState([]);
     const [segments, setSegments] = useState([]);
     const [stations, setStations] = useState([]);
     const countdown = useCountdown(game?.started_at);
@@ -34,7 +35,7 @@ function PageGame() {
             route: []
         }
     });
-    const isGameOver = useMemo(() => game && game.history.length, [game]);
+    const isGameOver = useMemo(() => Boolean(game && game.history && game.history.length > 0), [game]);
     const isWin = useMemo(() => {
         if (!game || !game.history.length) return false;
 
@@ -66,6 +67,15 @@ function PageGame() {
     }, [params.gameId]);
 
     useEffect(() => {
+        async function listLines() {
+            const response = await api.lines.list();
+            if (response.success) setLines(response.data);
+        }
+
+        if (isGameOver) listLines();
+    }, [isGameOver]);
+
+    useEffect(() => {
         if (countdown === 0 && game && !game.history.length) handleSubmit({ route: form.getValues('route') });
     }, [countdown, game]);
 
@@ -82,7 +92,7 @@ function PageGame() {
                 {
                     stations.length > 0 && segments.length > 0
                     &&
-                    <MapDisplay segments={isGameOver ? segments : null} stations={stations} />
+                    <MapDisplay lines={lines} segments={isGameOver ? segments : null} stations={stations} />
                 }
             </div>
             {
