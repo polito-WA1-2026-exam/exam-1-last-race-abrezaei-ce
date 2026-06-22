@@ -16,6 +16,11 @@ const router = createBrowserRouter([
     {
         loader: async () => { await useUserStore.getState().getAuthenticatedUser(); },
         Component: LayoutDefault,
+        HydrateFallback: () => (
+            <div className="flex h-screen w-full items-center justify-center bg-background">
+                <p className="text-muted-foreground font-medium animate-pulse">Loading app...</p>
+            </div>
+        ),
         children: [
             {
                 index: true,
