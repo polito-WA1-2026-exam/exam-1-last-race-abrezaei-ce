@@ -259,7 +259,7 @@ function PageGame() {
                                                         </FieldGroup>
                                                     )} />
                                                 <Button type="submit" size="lg">
-                                                    Save
+                                                    Submit
                                                 </Button>
 
                                             </FieldGroup>

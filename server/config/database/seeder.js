@@ -22,19 +22,19 @@ const lines = [
 
 const stations = [
     { id: 1, name: 'Paradiso', x: 100, y: 500 },
-    { id: 2, name: 'Marche', x: 200, y: 500 },
+    { id: 2, name: 'Marche', x: 200, y: 400 },
     { id: 3, name: 'Massaua', x: 300, y: 500 },
-    { id: 4, name: 'Pozzo Strada', x: 200, y: 300 },
-    { id: 5, name: 'Monte Grappa', x: 300, y: 350 },
-    { id: 6, name: 'Rivoli', x: 200, y: 200 },
-    { id: 7, name: 'Racconigi', x: 300, y: 250 },
-    { id: 8, name: 'Bernini', x: 400, y: 400 },
+    { id: 4, name: 'Pozzo Strada', x: 100, y: 400 },
+    { id: 5, name: 'Monte Grappa', x: 200, y: 300 },
+    { id: 6, name: 'Rivoli', x: 400, y: 50 },
+    { id: 7, name: 'Racconigi', x: 200, y: 100 },
+    { id: 8, name: 'Bernini', x: 400, y: 300 },
     { id: 9, name: 'XVIII Dicembre', x: 450, y: 450 },
-    { id: 10, name: 'Porta Susa', x: 500, y: 300 },
-    { id: 11, name: 'Vinzaglio', x: 550, y: 350 },
-    { id: 12, name: 'Re Umberto', x: 500, y: 150 },
+    { id: 10, name: 'Porta Susa', x: 600, y: 300 },
+    { id: 11, name: 'Vinzaglio', x: 700, y: 500 },
+    { id: 12, name: 'Re Umberto', x: 400, y: 150 },
     { id: 13, name: 'Porta Nuova', x: 600, y: 200 },
-    { id: 14, name: 'Marconi', x: 700, y: 250 },
+    { id: 14, name: 'Marconi', x: 700, y: 300 },
     { id: 15, name: 'Nizza', x: 800, y: 300 },
     { id: 16, name: 'Dante', x: 700, y: 100 },
 ];
@@ -97,7 +97,7 @@ const games = [
             [
                 { id: 10, user_origin: 6, user_destination: 7, event_id: 8 },
                 { id: 11, user_origin: 7, user_destination: 10, event_id: 3 },
-                { id: 5, user_origin: 10, user_destination: 13, event_id: 5 }, 
+                { id: 5, user_origin: 10, user_destination: 13, event_id: 5 },
                 { id: 14, user_origin: 13, user_destination: 14, event_id: 6 },
                 { id: 15, user_origin: 14, user_destination: 15, event_id: 2 }
             ],
