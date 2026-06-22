@@ -801,5 +801,6 @@
 - username: `player-3`, password: `strong_password`
 
 ## Use of AI Tools
-Briefly describe whether you used any AI tools (e.g., ChatGPT, GitHub Copilot, Claude) while working on this project, for which purposes (e.g., clarifying concepts, debugging, generating code), and how you verified or adapted their output.
-If you did not use any AI tools, simply state so.
+During the development of this project, AI tools were utilized primarily for technology transition and complex logic debugging:
+- Coming from a background of building large-scale, scalable architectures in Vue.js, this was my first experience with React. I used AI to map advanced Vue concepts, reactivity patterns, and architectural tricks to their exact React equivalents. This ensured the project maintained a clean and robust structure.
+- AI assisted in the implementation, step-by-step tracing, and debugging of the complex route-validation algorithm.
