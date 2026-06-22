@@ -1,5 +1,5 @@
 import api from "@/api";
-import MapDisplay from "@/components/map/mapDisplay";
+import Map from "@/components/map";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -94,7 +94,7 @@ function PageGame() {
                 {
                     stations.length > 0 && segments.length > 0
                     &&
-                    <MapDisplay lines={lines} segments={isGameOver ? segments : null} stations={stations} />
+                    <Map lines={lines} segments={isGameOver ? segments : null} stations={stations} />
                 }
             </div>
             {

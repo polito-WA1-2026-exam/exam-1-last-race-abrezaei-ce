@@ -3,7 +3,7 @@ import { responseSuccess } from "../utils/response.js";
 
 const segmentsController = {
     list: async (req, res) => {
-        return responseSuccess(res, await listSegments());
+        return responseSuccess(res, await listSegments(), 'Segments retrieved');
     }
 }
 

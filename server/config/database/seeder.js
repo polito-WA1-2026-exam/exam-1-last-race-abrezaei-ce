@@ -3,9 +3,9 @@ import crypto from "crypto";
 import { executeRoute } from "../../services/gameService.js";
 
 const users = [
-    { id: 1, username: 'abrezaei', hashed_password: 'password' },
-    { id: 2, username: 'player-1', hashed_password: 'simple_password' },
-    { id: 3, username: 'player-2', hashed_password: 'strong_password' },
+    { id: 1, username: 'player-1', hashed_password: 'strong_password' },
+    { id: 2, username: 'player-2', hashed_password: 'strong_password' },
+    { id: 3, username: 'player-3', hashed_password: 'strong_password' },
 ];
 
 users.forEach((user) => {

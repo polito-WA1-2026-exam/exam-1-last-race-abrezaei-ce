@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-function MapDisplay({ className, ...props }) {
+function Map({ className, ...props }) {
     const { lines, segments, stations } = props;
 
     return (
@@ -70,4 +70,4 @@ function MapDisplay({ className, ...props }) {
     );
 }
 
-export default MapDisplay;
+export default Map;

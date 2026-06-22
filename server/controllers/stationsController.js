@@ -3,7 +3,7 @@ import { responseSuccess } from "../utils/response.js";
 
 const stationsController = {
     list: async (req, res) => {
-        return responseSuccess(res, await listStations());
+        return responseSuccess(res, await listStations(), 'Stations retrieved');
     }
 }
 

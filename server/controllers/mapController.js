@@ -3,7 +3,7 @@ import { responseSuccess } from "../utils/response.js";
 
 const mapController = {
     map: async (req, res) => {
-        return responseSuccess(res, await getSetupMap(req.user?.id));
+        return responseSuccess(res, await getSetupMap(req.user?.id), 'Map retrieved');
     }
 }
 

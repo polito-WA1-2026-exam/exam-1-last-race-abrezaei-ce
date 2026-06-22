@@ -10,11 +10,11 @@ import linesRoutes from "./endpoints/lines.js";
 const router = express.Router();
 
 router.use("/auth", authRoutes);
-router.use("/games", gamesRoutes);
-router.use("/leaderboard", leaderboardRoutes);
 router.use("/map", mapRoutes);
+router.use("/games", gamesRoutes);
 router.use("/lines", linesRoutes);
-router.use("/stations", stationsRoutes);
 router.use("/segments", segmentsRoutes);
+router.use("/stations", stationsRoutes);
+router.use("/leaderboard", leaderboardRoutes);
 
 export default router;

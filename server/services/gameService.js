@@ -64,9 +64,9 @@ async function startGame(userId) {
     const gameId = await createGame(userId, origin.id, destination.id, startedAt);
 
     return {
-        game_id: gameId,
-        origin,
-        destination,
+        id: gameId,
+        origin: origin.id,
+        destination: destination.id,
         started_at: startedAt
     };
 }

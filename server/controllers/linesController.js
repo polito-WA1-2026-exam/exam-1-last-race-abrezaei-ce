@@ -3,7 +3,7 @@ import { responseSuccess } from "../utils/response.js";
 
 const linesController = {
     list: async (req, res) => {
-        return responseSuccess(res, await listLines());
+        return responseSuccess(res, await listLines(), 'Lines retrieved');
     }
 }
 
