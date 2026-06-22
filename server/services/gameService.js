@@ -1,18 +1,9 @@
 import { listEvents } from "../repositories/eventRepository.js";
-import { createGame, finishActiveGamesByUserId, getGameById, updateGame } from "../repositories/gameRepository.js";
+import { createGame, finishActiveGamesByUserId, getGameByIdAndUserId, getGamesByUserId, updateGame } from "../repositories/gameRepository.js";
 import { listSegments } from "../repositories/segmentRepository.js";
 import { listStations } from "../repositories/stationRepository.js";
 import { makePenaltyHistory, parseHistory, serializeHistory } from "./gameHistoryService.js";
 import { pickRandomOriginAndDestination, validateRoute } from "./routeService.js";
-
-function formatGame(game) {
-    if (!game) return null;
-
-    return {
-        ...game,
-        history: parseHistory(game.history)
-    };
-}
 
 function executeRoute(segments, events, isPredefined = false) {
     let score = parseInt(process.env.STARTING_SCORE);
@@ -43,12 +34,19 @@ function executeRoute(segments, events, isPredefined = false) {
     };
 }
 
+async function getGamesForUser(gameId, userId) {
+    return await getGamesByUserId(gameId, userId);
+}
+
 async function getGameForUser(gameId, userId) {
-    const game = await getGameById(gameId);
+    const game = await getGameByIdAndUserId(gameId, userId);
 
-    if (!game || game.user_id !== userId) return null;
+    if (!game) return null;
 
-    return formatGame(game);
+    return {
+        ...game,
+        history: parseHistory(game.history)
+    };
 }
 
 async function abandonActiveGames(userId) {
@@ -74,9 +72,9 @@ async function startGame(userId) {
 }
 
 async function submitRoute(gameId, userId, route) {
-    const game = await getGameById(gameId);
+    const game = await getGameByIdAndUserId(gameId, userId);
 
-    if (!game || game.user_id !== userId || game.history !== null) return null;
+    if (!game || game.history !== null) return null;
 
     const validation = await validateRoute(route, game);
 
@@ -94,4 +92,4 @@ async function submitRoute(gameId, userId, route) {
     return { game: await getGameForUser(gameId, userId), message: "Game processed" };
 }
 
-export { abandonActiveGames, getGameForUser, startGame, submitRoute, executeRoute };
+export { getGamesForUser, getGameForUser, abandonActiveGames, startGame, submitRoute, executeRoute };

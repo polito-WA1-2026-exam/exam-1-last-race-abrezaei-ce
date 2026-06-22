@@ -17,7 +17,7 @@ function PageLeaderboard() {
         async function getLeaderboardList() {
             const response = await api.leaderboard.list();
 
-            if (response.success) setList(response.data);
+            if (response.success) setList(response.data.sort((a, b) => b.best_score - a.best_score));
         }
 
         getLeaderboardList();
@@ -39,10 +39,14 @@ function PageLeaderboard() {
     return (
         <>
 
-            <div className="mb-6">
+            <div className="mb-12">
 
-                <h1 className="text-3xl font-semibold text-center mb-2">Leaderboard</h1>
-                <p className="text-muted-foreground text-center">Top 10 players with the highest scores.</p>
+                <div className="flex justify-between items-center">
+                    <h1 className="text-3xl font-semibold tracking-tight">Leaderboard</h1>
+                </div>
+                <p className="mt-4 text-muted-foreground text-lg leading-relaxed max-w-2xl">
+                    Top 10 players with the highest scores.
+                </p>
 
             </div>
             <Table>

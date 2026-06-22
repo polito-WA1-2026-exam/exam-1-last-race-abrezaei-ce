@@ -1,7 +1,13 @@
-import { getGameForUser, startGame, submitRoute } from "../services/gameService.js";
+import { getGameForUser, getGamesForUser, startGame, submitRoute } from "../services/gameService.js";
 import { responseSuccess, responseError } from "../utils/response.js";
 
 const gamesController = {
+    list: async (req, res) => {
+        const games = await getGamesForUser(req.user.id);
+
+        return responseSuccess(res, games, "Games retrieved");
+    },
+
     get: async (req, res) => {
         const game = await getGameForUser(req.params.id, req.user.id);
 

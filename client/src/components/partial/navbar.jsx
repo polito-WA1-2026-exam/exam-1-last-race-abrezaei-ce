@@ -55,6 +55,10 @@ function Navbar({ className, ...props }) {
                             </NavigationMenuItem>
                             <NavigationMenuItem>
                                 <NavigationMenuLink asChild>
+                                    <Link to="/games" viewTransition>Games</Link>
+                                </NavigationMenuLink>
+                            </NavigationMenuItem><NavigationMenuItem>
+                                <NavigationMenuLink asChild>
                                     <Link to="/map" viewTransition>Let's Play</Link>
                                 </NavigationMenuLink>
                             </NavigationMenuItem>

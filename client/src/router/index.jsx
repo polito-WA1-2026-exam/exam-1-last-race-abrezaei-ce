@@ -5,6 +5,7 @@ import auth from "@/middlewares/auth";
 import PageIndex from "@/pages";
 import Page404 from "@/pages/404";
 import PageGame from "@/pages/game";
+import PageGames from "@/pages/games";
 import PageLeaderboard from "@/pages/leaderboard";
 import PageLogin from "@/pages/login";
 import PageMap from "@/pages/map";
@@ -26,7 +27,12 @@ const router = createBrowserRouter([
                 Component: PageMap
             },
             {
-                path: '/game/:gameId',
+                path: '/games',
+                middleware: [auth],
+                Component: PageGames
+            },
+            {
+                path: '/games/:gameId',
                 middleware: [auth],
                 Component: PageGame
             },

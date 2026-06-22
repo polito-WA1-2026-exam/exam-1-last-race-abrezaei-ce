@@ -45,7 +45,7 @@ function PageGame() {
 
     useEffect(() => {
         async function getGame() {
-            const response = await api.game.get(params.gameId);
+            const response = await api.games.get(params.gameId);
 
             if (response.success) setGame(response.data);
         }
@@ -70,7 +70,7 @@ function PageGame() {
     }, [countdown, game]);
 
     async function handleSubmit(data) {
-        const response = await api.game.submit(params.gameId, data);
+        const response = await api.games.submit(params.gameId, data);
 
         if (response.success) setGame(response.data);
     }
@@ -141,13 +141,13 @@ function PageGame() {
                                         {
                                             isWin ?
 
-                                                <div className="px-3 py-1 bg-green-500/10 text-green-600 rounded-full text-sm font-semibold">
+                                                <p className="px-3 py-1 bg-green-500/10 text-green-600 rounded-full text-sm font-semibold">
                                                     You Won
-                                                </div>
+                                                </p>
                                                 :
-                                                <div className="px-3 py-1 bg-red-500/10 text-red-600 rounded-full text-sm font-semibold">
+                                                <p className="px-3 py-1 bg-red-500/10 text-red-600 rounded-full text-sm font-semibold">
                                                     You Lost
-                                                </div>
+                                                </p>
                                         }
                                     </CardHeader>
                                     <CardContent>

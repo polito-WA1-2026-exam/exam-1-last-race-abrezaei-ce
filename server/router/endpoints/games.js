@@ -7,6 +7,7 @@ import { body } from "express-validator";
 
 const gamesRoutes = express.Router();
 
+gamesRoutes.get('', isAuthenticated, wrapController(gamesController.list));
 gamesRoutes.get('/:id', isAuthenticated, wrapController(gamesController.get));
 gamesRoutes.post('/start', isAuthenticated, wrapController(gamesController.start));
 gamesRoutes.post(
