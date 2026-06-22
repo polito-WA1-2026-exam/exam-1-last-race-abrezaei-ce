@@ -10,7 +10,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Link, useParams } from "react-router";
 import * as zod from 'zod';
-import { CircleMinus, CirclePlus, ArrowRight } from "lucide-react"
+import { CircleMinus, CirclePlus, ArrowRight, MoveHorizontal } from "lucide-react"
 import {
     Item,
     ItemContent,
@@ -262,7 +262,9 @@ function PageGame() {
                                                                                 }} />
                                                                             <FieldLabel
                                                                                 htmlFor={`segment-${segment.id}`}>
-                                                                                {`${stations.find((item) => item.id === segment.origin)?.name} - ${stations.find((item) => item.id === segment.destination)?.name}`}
+                                                                                {stations.find((item) => item.id === segment.origin)?.name}
+                                                                                <MoveHorizontal className="w-4 h-4" />
+                                                                                {stations.find((item) => item.id === segment.destination)?.name}
                                                                             </FieldLabel>
 
                                                                         </Field>
