@@ -67,11 +67,11 @@ function PageGames() {
                                         item.score > 0
                                             ?
                                             <p className="inline-block px-3 py-1 bg-green-500/10 text-green-600 rounded-full text-sm font-semibold">
-                                                You Won
+                                                Won
                                             </p>
                                             :
                                             <p className="inline-block px-3 py-1 bg-red-500/10 text-red-600 rounded-full text-sm font-semibold">
-                                                You Lost
+                                                Lost
                                             </p>
                                     }
                                 </TableCell>

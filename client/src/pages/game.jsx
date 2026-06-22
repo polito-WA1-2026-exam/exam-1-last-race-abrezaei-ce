@@ -3,7 +3,7 @@ import MapDisplay from "@/components/map/mapDisplay";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel, FieldLegend, FieldSet } from "@/components/ui/field";
+import { Field, FieldError, FieldGroup, FieldLabel, FieldSet } from "@/components/ui/field";
 import useCountdown from "@/hooks/useCountdown";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useMemo, useState } from "react";
@@ -35,7 +35,8 @@ function PageGame() {
             route: []
         }
     });
-    const isGameOver = useMemo(() => Boolean(game && game.history && game.history.length > 0), [game]);
+
+    const isGameOver = useMemo(() => game && game.history && game.history.length > 0, [game]);
     const isWin = useMemo(() => {
         if (!game || !game.history.length) return false;
 
@@ -69,6 +70,7 @@ function PageGame() {
     useEffect(() => {
         async function listLines() {
             const response = await api.lines.list();
+
             if (response.success) setLines(response.data);
         }
 

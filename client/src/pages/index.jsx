@@ -43,14 +43,14 @@ function PageIndex() {
                     <Separator />
                     <div className="space-y-4">
                         <h2 className="flex items-center gap-2 text-base font-medium">
-                            Coins & Random Events
+                            Coins And Random Events
                         </h2>
                         <div className="text-sm text-muted-foreground leading-relaxed space-y-4">
                             <p>
                                 You start every game with 20 Coins. For every connection you travel, a random event will occur.
                             </p>
                             <ul className="list-disc list-inside space-y-1.5 ml-1">
-                                <li>Lucky events will increase your balance.</li>
+                                <li>Lucky events will increase your coins.</li>
                                 <li>Unlucky events will deduct coins.</li>
                             </ul>
                             <p>
