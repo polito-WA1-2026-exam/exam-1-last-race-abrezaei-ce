@@ -182,16 +182,21 @@ function PageGame() {
                                                             {
                                                                 isWin
                                                                 &&
-                                                                <ItemDescription className="flex items-center gap-2">
-                                                                    <span>{stations.find(st => st.id === item.user_origin)?.name}</span>
-                                                                    <ArrowRight className="w-3 h-3" />
-                                                                    <span>{stations.find(st => st.id === item.user_destination)?.name}</span>
+                                                                <ItemDescription className="flex justify-between items-center gap-4">
+                                                                    <span className="flex flex-col">
+                                                                        <span>{stations.find(st => st.id === item.user_origin)?.name}</span>
+                                                                        <span className="text-xs">({item.score_before} coins)</span>
+                                                                    </span>
+                                                                    <ArrowRight className="w-5 h-5" />
+                                                                    <span className={`text-2xl font-semibold ${item.effect > 0 ? 'text-green-600' : 'text-red-600'}`}>{item.effect > 0 ? `+${item.effect}` : item.effect}</span>
+                                                                    <ArrowRight className="w-5 h-5" />
+                                                                    <span className="flex flex-col">
+                                                                        <span>{stations.find(st => st.id === item.user_destination)?.name}</span>
+                                                                        <span className="text-xs">({item.score_after} coins)</span>
+                                                                    </span>
                                                                 </ItemDescription>
 
                                                             }
-                                                        </ItemContent>
-                                                        <ItemContent className="flex-none text-center">
-                                                            <ItemDescription className={`text-2xl font-bold ${item.effect > 0 ? 'text-green-600' : 'text-red-600'}`}>{item.effect}</ItemDescription>
                                                         </ItemContent>
                                                     </Item>
                                                 )
